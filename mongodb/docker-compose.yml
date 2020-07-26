@@ -1,0 +1,55 @@
+version: '2'
+
+services:
+  mongodb:
+    image: 'docker.io/bitnami/mongodb:4.2-debian-10'
+    container_name: mongodb
+    # hostname: mongodb-primary
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGODB_ROOT_PASSWORD=mongo
+      - MONGODB_ENABLE_DIRECTORY_PER_DB=yes
+      - MONGODB_ADVERTISED_HOSTNAME=mongodb
+      - MONGODB_REPLICA_SET_MODE=primary
+      - MONGODB_REPLICA_SET_NAME=rs0
+      - MONGODB_REPLICA_SET_KEY=replicasetkey123
+    volumes:
+      - '${HOME}/docker_volumes/mongodb/primary-data:/bitnami/mongodb'
+
+  # mongodb-secondary:
+  #   image: 'docker.io/bitnami/mongodb:4.2-debian-10'
+  #   container_name: mongodb-secondary
+  #   # hostname: mongodb-secondary
+  #   ports:
+  #     - "27018:27018"
+  #   depends_on:
+  #     - mongodb
+  #   environment:
+  #     - MONGODB_ENABLE_DIRECTORY_PER_DB=yes
+  #     - MONGODB_PORT_NUMBER=27018
+  #     - MONGODB_PRIMARY_HOST=mongodb
+  #     - MONGODB_ADVERTISED_HOSTNAME=mongodb-secondary
+  #     - MONGODB_REPLICA_SET_MODE=secondary
+  #     - MONGODB_REPLICA_SET_NAME=rs0
+  #     - MONGODB_REPLICA_SET_KEY=replicasetkey123
+  #     - MONGODB_PRIMARY_ROOT_PASSWORD=mongo
+  #   volumes:
+  #     - '${HOME}/docker_volumes/mongodb/secondary-data:/bitnami/mongodb'
+
+  # mongodb-arbiter:
+  #   image: 'docker.io/bitnami/mongodb:4.2-debian-10'
+  #   container_name: mongodb-arbiter
+  #   # hostname: mongodb-arbiter
+  #   ports:
+  #     - "27019:27019"
+  #   depends_on:
+  #     - mongodb
+  #   environment:
+  #     - MONGODB_PORT_NUMBER=27019
+  #     - MONGODB_PRIMARY_HOST=mongodb
+  #     - MONGODB_ADVERTISED_HOSTNAME=mongodb-arbiter
+  #     - MONGODB_REPLICA_SET_MODE=arbiter
+  #     - MONGODB_REPLICA_SET_NAME=rs0
+  #     - MONGODB_REPLICA_SET_KEY=replicasetkey123
+  #     - MONGODB_PRIMARY_ROOT_PASSWORD=mongo

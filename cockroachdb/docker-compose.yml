@@ -1,0 +1,12 @@
+version: "2.4"
+services:
+  roach01:
+    hostname: roach01
+    image: cockroachdb/cockroach
+    container_name: roach01
+    command: ["start", "--insecure"]
+    ports:
+      - "26257:26257"
+      - "28080:8080"
+    volumes:
+      - ${HOME}/docker_volumes/cockroachdb/cockroach-data:/cockroach/cockroach-data

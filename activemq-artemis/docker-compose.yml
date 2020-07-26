@@ -1,0 +1,23 @@
+version: "2.4"
+services:
+  activemq-artemis:
+    image: vromero/activemq-artemis
+    container_name: activemq-artemis
+    ports:
+      - "8161:8161"
+      - "61616:61616"
+      # - "9404:9404"
+      # - "5445:5445"
+      # - "5672:5672"
+      # - "1883:1883"
+      # - "61613:61613"
+    environment:
+      ARTEMIS_USERNAME: ${ARTEMIS_USERNAME}
+      ARTEMIS_PASSWORD: ${ARTEMIS_PASSWORD}
+      ARTEMIS_MIN_MEMORY: 128M
+      ARTEMIS_MAX_MEMORY: 256M
+      DISABLE_SECURITY: "true"
+    volumes:
+      - ${HOME}/docker_volumes/activemq-artemis/etc:/var/lib/artemis/etc
+      # - ${HOME}/docker_volumes/activemq-artemis/etc-override:/var/lib/artemis/etc-override
+      - ${HOME}/docker_volumes/activemq-artemis/data:/var/lib/artemis/data

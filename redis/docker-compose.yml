@@ -1,0 +1,10 @@
+version: "2.4"
+services:
+  redis:
+    image: redis
+    container_name: redis
+    command: ["--appendonly", "yes"]
+    ports:
+      - "6379:6379"
+    volumes:
+      - ${HOME}/docker_volumes/redis/data:/data
