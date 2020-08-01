@@ -2,13 +2,13 @@ version: '2'
 
 services:
   mongodb:
-    image: 'docker.io/bitnami/mongodb:4.2-debian-10'
+    image: 'bitnami/mongodb'
     container_name: mongodb
     # hostname: mongodb-primary
     ports:
       - "27017:27017"
     environment:
-      - MONGODB_ROOT_PASSWORD=mongo
+      - MONGODB_ROOT_PASSWORD=${MONGODB_ROOT_PASSWORD}
       - MONGODB_ENABLE_DIRECTORY_PER_DB=yes
       - MONGODB_ADVERTISED_HOSTNAME=mongodb
       - MONGODB_REPLICA_SET_MODE=primary
@@ -33,7 +33,7 @@ services:
   #     - MONGODB_REPLICA_SET_MODE=secondary
   #     - MONGODB_REPLICA_SET_NAME=rs0
   #     - MONGODB_REPLICA_SET_KEY=replicasetkey123
-  #     - MONGODB_PRIMARY_ROOT_PASSWORD=mongo
+  #     - MONGODB_PRIMARY_ROOT_PASSWORD=${MONGODB_ROOT_PASSWORD}
   #   volumes:
   #     - '${HOME}/docker_volumes/mongodb/secondary-data:/bitnami/mongodb'
 
@@ -52,4 +52,4 @@ services:
   #     - MONGODB_REPLICA_SET_MODE=arbiter
   #     - MONGODB_REPLICA_SET_NAME=rs0
   #     - MONGODB_REPLICA_SET_KEY=replicasetkey123
-  #     - MONGODB_PRIMARY_ROOT_PASSWORD=mongo
+  #     - MONGODB_PRIMARY_ROOT_PASSWORD=${MONGODB_ROOT_PASSWORD}
