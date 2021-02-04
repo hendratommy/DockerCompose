@@ -1,0 +1,21 @@
+version: "2.4"
+services:
+  postgresql:
+    image: openidentityplatform/opendj:4.4.9
+    container_name: ${OPENDJ_CONTAINER_NAME}
+    hostname: ${OPENDJ_HOST_NAME}
+    ports:
+      - "1389:1389"
+      - "1636:1636"
+      - "4444:4444"
+    environment:
+      BASE_DN: ${BASE_DN}
+      ADD_BASE_ENTRY: 
+      ROOT_PASSWORD: ${ROOT_PASSWORD}
+    volumes:
+      - ${HOME}/docker_volumes/opendj/data:/opt/opendj/data
+
+networks:
+  default:
+    external:
+      name: backend

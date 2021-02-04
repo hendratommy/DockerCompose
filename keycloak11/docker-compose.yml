@@ -1,0 +1,25 @@
+version: "2.4"
+services:
+  server:
+    image: jboss/keycloak:11.0.3
+    container_name: keycloak11
+    ports:
+      - "9080:8080"
+      - "9443:8443"
+    environment:
+      KEYCLOAK_USER: ${KEYCLOAK_USER}
+      KEYCLOAK_PASSWORD: ${KEYCLOAK_PASSWORD}
+      DB_VENDOR: postgres
+      DB_ADDR: postgresql:5432
+      DB_USER: ${POSTGRES_USER}
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_DATABASE: ${DB_DATABASE}
+      KEYCLOAK_STATISTICS: db,http
+      JAVA_OPTS_APPEND: "-Dkeycloak.profile.feature.scripts=enabled"
+    volumes:
+      - ${HOME}/docker_volumes/keycloak/themes/is:/opt/jboss/keycloak/themes/is
+
+networks:
+  default:
+    external:
+      name: backend

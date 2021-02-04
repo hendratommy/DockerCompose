@@ -1,0 +1,17 @@
+version: "2.4"
+services:
+  postgresql:
+    image: postgres:13.1
+    container_name: postgresql
+    ports:
+      - "5432:5432"
+    environment:
+      PGDATA: /var/lib/postgresql/data/pgdata
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - ${HOME}/docker_volumes/postgresql/13/pgdata:/var/lib/postgresql/data/pgdata
+
+networks:
+  default:
+    external:
+      name: backend

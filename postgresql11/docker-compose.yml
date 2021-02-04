@@ -1,0 +1,17 @@
+version: "2.4"
+services:
+  postgresql:
+    image: postgres:11.9
+    container_name: postgresql11
+    ports:
+      - "5432:5432"
+    environment:
+      PGDATA: /var/lib/postgresql/data/pgdata
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - PGDATA:/var/lib/postgresql/data
+
+volumes: 
+  PGDATA:
+    external: true
+    name: postgresql11
