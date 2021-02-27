@@ -1,0 +1,14 @@
+version: "2.4"
+services:
+  openam:
+    image: openidentityplatform/openam:14.6.2
+    container_name: openam
+    ports:
+      - "18080:8080"
+    # volumes:
+      # - ${DOCKER_VOLUME}/openam/config:/usr/openam/config
+
+networks:
+  default:
+    external:
+      name: backend

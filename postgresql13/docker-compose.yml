@@ -1,8 +1,9 @@
-version: "2.4"
+version: "3.7"
 services:
-  postgresql:
+  pgsrv01:
     image: postgres:13.1
-    container_name: postgresql
+    container_name: ${POSTGRES_CONTAINER_NAME}
+    hostname: ${POSTGRES_HOST_NAME}
     ports:
       - "5432:5432"
     environment:
@@ -14,4 +15,4 @@ services:
 networks:
   default:
     external:
-      name: backend
+      name: internal

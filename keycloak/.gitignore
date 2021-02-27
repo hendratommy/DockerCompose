@@ -2,3 +2,6 @@
 *.code-workspace
 *.env
 .vscode
+node_modules
+themes/keycloak
+themes/base
